@@ -1,0 +1,43 @@
+Problem Statement
+
+Write a dart class for tech learners and mentors. Should have following methods
+addStacks() : Add a particular stack of interest/expertise
+setMentorOrLearner() : Set whether the participant is learner or mentor
+setAvailableTime() : if person is mentor set available time
+getMentor() : Takes stack and time as params and finds available mentors. 
+
+
+
+class Techie {
+
+    String designation; 
+    setMentorOrLearner(this.designation);
+
+    List<String> stack = [];
+    addStacks(List<String> stk) {
+        stack = stack + stk;
+    }
+
+    List<int> availableTime = [];
+    setAvailableTime(int start, int end) {
+        availableTime.add(start);
+        availableTime.add(end);
+    }
+
+
+    List<Techie> techies = [];
+    Techie getMentor(int start, int end,  List<String> stk) {
+        List<Techie> result = [];
+        for(x in techies) {
+            if(x.designation == 'mentor') {
+                for(skill in stk) {
+                    if(x.stack.contains(skill) && x.availableTime[0]<= start && x.availableTime[1]>= end) {
+                        result.add(x);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
